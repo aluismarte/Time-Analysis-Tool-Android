@@ -25,6 +25,28 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="OperacionActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+            </intent-filter>
+        </activity>
+        <activity android:name="ElementoActivity"><intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+            </intent-filter></activity>
+        <activity android:name="Login"><intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+            </intent-filter></activity>
+        <activity android:name="ReporteActivity"><intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+            </intent-filter></activity>
+        <activity android:name="SalvadoActivity"><intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+            </intent-filter></activity>
     </application>
 
 </manifest>
