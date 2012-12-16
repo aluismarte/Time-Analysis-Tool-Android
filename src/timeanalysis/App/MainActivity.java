@@ -4,6 +4,10 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
 
+/*
+Aqui se elige el tipo de salvado
+*/
+
 public class MainActivity extends Activity {
 
 	@Override
