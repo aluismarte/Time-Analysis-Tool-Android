@@ -15,6 +15,8 @@ Aqui se elige el tipo de salvado
 @SuppressWarnings("deprecation")
 public class MainActivity extends TabActivity {
 	
+	private String[] Datos;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -55,6 +57,14 @@ public class MainActivity extends TabActivity {
 		tabHost.addTab(tabSpecOperacion);
 		
 		tabHost.setCurrentTab(0);
+	}
+
+	public String[] getDatos() {
+		return this.Datos;
+	}
+	
+	public void setDatos(String dat[]) {
+		this.Datos = dat;
 	}
 	
 }
