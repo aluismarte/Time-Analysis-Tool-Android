@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+    <timeanalysis.App.Adaptadores.AdaptadorCronometro
+        android:id="@+id/chronometer1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:textSize="20sp" />
+    
+    <timeanalysis.App.Adaptadores.AdaptadorCronometro
+        android:id="@+id/chronometer2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical|center_horizontal"
+        android:textSize="40sp" />
+    
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+        
+        <TableRow
+            android:layout_width="match_parent"
+        	android:layout_height="wrap_content"
+        	android:gravity="center" >
+	        
+	        <Button
+	            android:id="@+id/Start"
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:layout_marginRight="50dp"
+	            android:onClick="BotonSelecIniciar"
+	            android:text="@+string/Seleccionar" >
+	        </Button>
+	
+	        <Button
+	            android:id="@+id/Captura"
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:onClick="BotonVuelta"
+	            android:text="@+string/Captura" >
+	        </Button>
+	        
+	        <Button
+	            android:id="@+id/Cancel"
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:layout_marginLeft="50dp"
+	            android:onClick="BotonCancelar"
+	            android:text="@+string/Cancelar" >
+	        </Button>
+	        
+        </TableRow>
+        
+    </TableLayout>
+    
+    <GridView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/capturaDatos"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:columnWidth="50dp"
+        android:gravity="center"
+        android:numColumns="auto_fit"
+        android:stretchMode="columnWidth" >
+    </GridView>
+    
+</LinearLayout>

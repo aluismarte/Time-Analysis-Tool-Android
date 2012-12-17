@@ -2,11 +2,15 @@ package timeanalysis.App.Tools;
 
 import timeanalysis.App.Interfaces.IAlmacenemiento;
 import timeanalysis.App.Interfaces.IEspecial;
+import timeanalysis.App.Interfaces.ITostadas;
+
 import java.io.IOException;
 import android.accounts.AccountManager;
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
+import android.widget.Toast;
+
 import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.googleapis.extensions.android.gms.auth.GoogleAccountCredential;
 import com.google.api.client.googleapis.extensions.android.gms.auth.UserRecoverableAuthIOException;
@@ -16,7 +20,7 @@ import com.google.api.services.drive.Drive;
 import com.google.api.services.drive.DriveScopes;
 import com.google.api.services.drive.model.File;
 
-public class GoogleDrive extends Activity implements IEspecial,IAlmacenemiento {
+public class GoogleDrive extends Activity implements IEspecial,IAlmacenemiento,ITostadas {
 	
 	static final int Peticion_Cuenta = 1;
 	static final int Peticion_Autorizacion = 2;
@@ -54,9 +58,9 @@ public class GoogleDrive extends Activity implements IEspecial,IAlmacenemiento {
 					
 					File file = servicio.files().insert(cuerpo, ContenidoMedia).execute();
 					if (file != null) {
-						Utileria.getInstancia().MostrarTostada("Se subio el archivo con exito.");
+						MostrarTostada("Se subio el archivo con exito.");
 					}else {
-						Utileria.getInstancia().MostrarTostada("Ocurio un error.");
+						MostrarTostada("Ocurio un error.");
 					}
 				} catch (UserRecoverableAuthIOException e) {
 					Configuracion();
@@ -92,6 +96,15 @@ public class GoogleDrive extends Activity implements IEspecial,IAlmacenemiento {
 			credencial.setSelectedAccountName(NombreCuenta);
 			servicio = getDriveServicio(credencial);
 		}
+	}
+	
+	public void MostrarTostada(final String tostada) {
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				Toast.makeText(getApplicationContext(), tostada, Toast.LENGTH_SHORT).show();
+			}
+		});
 	}
 	
 }

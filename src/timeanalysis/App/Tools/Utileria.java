@@ -1,9 +1,6 @@
 package timeanalysis.App.Tools;
 
 import android.app.Activity;
-import android.widget.Toast;
-
-//Esto puede dar problemas
 
 public class Utileria extends Activity {
 	
@@ -16,15 +13,6 @@ public class Utileria extends Activity {
 			instancia = new Utileria();
 		}
 		return instancia;
-	}
-	
-	public void MostrarTostada(final String tostada) {
-		runOnUiThread(new Runnable() {
-			@Override
-			public void run() {
-				Toast.makeText(getApplicationContext(), tostada, Toast.LENGTH_SHORT).show();
-			}
-		});
 	}
 	
 	public void CrearDireccionArchivo(final String archivo, final int ubicacion) {
