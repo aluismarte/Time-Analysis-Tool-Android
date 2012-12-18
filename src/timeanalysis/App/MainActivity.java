@@ -1,5 +1,6 @@
 package timeanalysis.App;
 
+import timeanalysis.App.Interfaces.IAlmacenemiento;
 import android.app.TabActivity;
 import android.content.Intent;
 import android.content.res.Resources;
@@ -16,6 +17,7 @@ Aqui se elige el tipo de salvado
 public class MainActivity extends TabActivity {
 	
 	private String[] Datos;
+	private static IAlmacenemiento DispositivoSalvado;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -53,8 +55,16 @@ public class MainActivity extends TabActivity {
 				.setIndicator("", ressources.getDrawable(R.drawable.icon_operacion))
 				.setContent(intentOperacion);
 		
+		Intent intentSalvado = new Intent().setClass(this, SalvadoActivity.class);
+		
+		TabSpec tabSpecTipoSalvado = tabHost
+				.newTabSpec("Tipo de Salvado")
+				.setIndicator("", ressources.getDrawable(R.drawable.ic_launcher))
+				.setContent(intentSalvado);
+		
 		tabHost.addTab(tabSpecCaptura);
 		tabHost.addTab(tabSpecOperacion);
+		tabHost.addTab(tabSpecTipoSalvado);
 		
 		tabHost.setCurrentTab(0);
 	}
@@ -65,6 +75,14 @@ public class MainActivity extends TabActivity {
 	
 	public void setDatos(String dat[]) {
 		this.Datos = dat;
+	}
+	
+	public void setDispositivoSalvado(IAlmacenemiento alma) {
+		DispositivoSalvado = alma;
+	}
+	
+	public IAlmacenemiento getDispositivoSalvado() {
+		return DispositivoSalvado;
 	}
 	
 }

@@ -62,7 +62,7 @@ public class GoogleDrive extends Activity implements IEspecial,IAlmacenemiento,I
 					//Prepara la metadata del archivo.
 					File cuerpo = new File();
 					cuerpo.setTitle(contenidoArchivo.getName());
-					cuerpo.setMimeType(formatoArchivo);
+					cuerpo.setMimeType(mimeType);
 					
 					File file = servicio.files().insert(cuerpo, ContenidoMedia).execute();
 					if (file != null) {
