@@ -9,6 +9,7 @@ import android.accounts.AccountManager;
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
+import android.webkit.MimeTypeMap;
 import android.widget.Toast;
 
 import com.google.api.client.extensions.android.http.AndroidHttp;
@@ -24,7 +25,9 @@ public class GoogleDrive extends Activity implements IEspecial,IAlmacenemiento,I
 	
 	static final int Peticion_Cuenta = 1;
 	static final int Peticion_Autorizacion = 2;
-	static final String formatoArchivo = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+	//Esto es posible que no se use.
+	static final String formatoAndroidExport = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+	static final String formatoArchivo = "application/vnd.ms-excel";
 	
 	private static Uri ArchivoUri;
 	private static Drive servicio;
@@ -48,8 +51,13 @@ public class GoogleDrive extends Activity implements IEspecial,IAlmacenemiento,I
 				try {
 					//Prepara una ruta de llamada de archivo.
 					java.io.File contenidoArchivo = new java.io.File(ArchivoUri.getPath());
+					
+					//Encuentro la extension y el mimeType
+					String fileExtension = MimeTypeMap.getFileExtensionFromUrl(ArchivoUri.toString());
+					String mimeType = MimeTypeMap.getSingleton().getMimeTypeFromExtension(fileExtension);
+					
 					//Esto carga los datos del archivo.
-					FileContent ContenidoMedia = new FileContent(formatoArchivo, contenidoArchivo);
+					FileContent ContenidoMedia = new FileContent(mimeType, contenidoArchivo);
 					
 					//Prepara la metadata del archivo.
 					File cuerpo = new File();
@@ -65,6 +73,7 @@ public class GoogleDrive extends Activity implements IEspecial,IAlmacenemiento,I
 				} catch (UserRecoverableAuthIOException e) {
 					Configuracion();
 				} catch (IOException e) {
+					MostrarTostada("Ocurio un error grave en el codigo.");
 					e.printStackTrace();
 				}
 			}
