@@ -2,16 +2,16 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="timeanalysis.App"
     android:versionCode="8"
-    android:versionName="1.0" >
+    android:versionName="1.0" android:installLocation="auto">
 
     <uses-sdk
         android:minSdkVersion="8"
-        android:targetSdkVersion="15" />
+        android:targetSdkVersion="17" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
-
+    
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
@@ -25,41 +25,58 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="OperacionActivity">
+        <activity android:name="OperacionActivity"
+            android:exported="false" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.BROWSABLE"/>
             </intent-filter>
         </activity>
-        <activity android:name="ElementoActivity"><intent-filter>
+        <activity android:name="ElementoActivity"
+            android:exported="false" >
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.BROWSABLE"/>
             </intent-filter></activity>
-        <activity android:name="Login"><intent-filter>
+        <activity android:name="Login"
+            android:exported="false" >
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.BROWSABLE"/>
             </intent-filter></activity>
-        <activity android:name="ReporteActivity"><intent-filter>
+        <activity android:name="ReporteActivity"
+            android:exported="false" >
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.BROWSABLE"/>
             </intent-filter></activity>
-        <activity android:name="SalvadoActivity"><intent-filter>
+        <activity android:name="SalvadoActivity"
+            android:exported="false" >
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.BROWSABLE"/>
             </intent-filter></activity>
-        <activity android:name=".Tools.Utileria"><intent-filter>
+        <activity android:name=".Tools.Utileria"
+            android:exported="false" >
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.BROWSABLE"/>
             </intent-filter></activity>
-        <activity android:name=".Tools.GoogleDrive"><intent-filter>
+        <activity android:name=".Tools.GoogleDrive"
+            android:exported="false" >
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.BROWSABLE"/>
             </intent-filter></activity>
-        <activity android:name="CapturaActivity"><intent-filter>
+        <activity android:name="CapturaActivity"
+            android:exported="false" >
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.BROWSABLE"/>
             </intent-filter></activity>
-        <activity android:name=".DB.Manejador"><intent-filter>
+        <activity android:name=".DB.Manejador"
+            android:exported="false" >
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.BROWSABLE"/>
             </intent-filter></activity>

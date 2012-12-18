@@ -12,5 +12,10 @@
     <string name="Cancelar">Cancelar</string>
     <string name="Seleccionar">Seleccionar</string>
     <string name="CronometroCero">00:00:0</string>
+    <string name="Nuevo">Nuevo</string>
+    <string name="EjemploOperacion">Nombre de la operacion</string>
+    <string name="OK">OK</string>
+    <string name="Cancel">Cancelar</string>
+    <string name="EjemploElemento">Nombre del elemento</string>
 
 </resources>

@@ -1,5 +1,7 @@
 package timeanalysis.App.Adaptadores;
 
+import java.text.DecimalFormat;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Handler;
@@ -7,7 +9,6 @@ import android.os.Message;
 import android.os.SystemClock;
 import android.util.AttributeSet;
 import android.widget.TextView;
-import java.text.DecimalFormat;
 
 
 @SuppressLint("HandlerLeak")

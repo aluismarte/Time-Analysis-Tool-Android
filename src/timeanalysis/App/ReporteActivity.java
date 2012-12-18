@@ -1,9 +1,5 @@
 package timeanalysis.App;
 
-import android.app.Activity;
-import android.os.Bundle;
-//import java.io.IOException;
-//import jxl.Workbook;
 import jxl.WorkbookSettings;
 import jxl.format.Alignment;
 import jxl.write.Label;
@@ -13,6 +9,10 @@ import jxl.write.WritableSheet;
 import jxl.write.WritableWorkbook;
 import jxl.write.WriteException;
 import jxl.write.biff.RowsExceededException;
+import android.app.Activity;
+import android.os.Bundle;
+//import java.io.IOException;
+//import jxl.Workbook;
 
 public class ReporteActivity extends Activity {
 	

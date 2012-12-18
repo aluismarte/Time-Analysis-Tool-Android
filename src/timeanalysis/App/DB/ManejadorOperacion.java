@@ -3,10 +3,10 @@ package timeanalysis.App.DB;
 import java.util.ArrayList;
 import java.util.List;
 
-import android.content.ContentValues;
-import android.database.Cursor;
 import timeanalysis.App.DB.Modelos.OperacionModelo;
 import timeanalysis.App.Interfaces.IManejador;
+import android.content.ContentValues;
+import android.database.Cursor;
 
 public class ManejadorOperacion implements IManejador {
 	
@@ -19,7 +19,7 @@ public class ManejadorOperacion implements IManejador {
 	
 	private ManejadorOperacion() {}
 	
-	public ManejadorOperacion getInstancia() {
+	public static ManejadorOperacion getInstancia() {
 		if(mo == null) {
 			mo = new ManejadorOperacion();
 		}
@@ -54,10 +54,18 @@ public class ManejadorOperacion implements IManejador {
 		Terminar();
 	}
 	
-	public OperacionModelo[] Buscar() {
-		//Esto se queda para despues.
-		Terminar();
-		return null;
+	public List<OperacionModelo> Buscar(OperacionModelo elemento) {
+		List<OperacionModelo> dats = new ArrayList<OperacionModelo>();
+		Cursor cursor = Manejador.getInstancia().getDB().query(Tabla, allColumns,
+				ID + " = " + elemento.getId(), null, null, null, null);
+		cursor.moveToFirst();
+		while (!cursor.isAfterLast()) {
+			OperacionModelo ope = cursorToOperacionModelo(cursor);
+			dats.add(ope);
+			cursor.moveToNext();
+		}
+		cursor.close();
+		return dats;
 	}
 	
 	public List<OperacionModelo> Listado() {

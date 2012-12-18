@@ -1,5 +1,6 @@
 package timeanalysis.App.DB;
 
+import timeanalysis.App.MainActivity;
 import android.app.Activity;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
@@ -7,11 +8,11 @@ import android.database.sqlite.SQLiteDatabase;
 public class Manejador extends Activity{
 	
 	private static Manejador manejador;
-	private SQLiteDatabase database;
-	private DB db;
+	private static SQLiteDatabase database;
+	private static DB db;
 	
 	private Manejador() {
-		db = new DB(getApplicationContext());
+		db = new DB(MainActivity.contexto);
 		open();
 	}
 	
@@ -22,8 +23,9 @@ public class Manejador extends Activity{
 		return manejador;
 	}
 	
-	public void open() throws SQLException {
+	private static void open() throws SQLException {
 	    database = db.getWritableDatabase();
+	    db.prepararFK(database);
 	}
 	
 	public void close() {
@@ -31,7 +33,7 @@ public class Manejador extends Activity{
 	}
 	
 	public SQLiteDatabase getDB() {
-		return this.database;
+		return database;
 	}
 	
 }

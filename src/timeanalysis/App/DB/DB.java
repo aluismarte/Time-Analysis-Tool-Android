@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DB extends SQLiteOpenHelper {
 	
 	private static final String NombreDB = "TimeAnalysisDB.db";
-	private static final int DBVersion = 37;
+	private static final int DBVersion = 36;
 	private static final String FK_Ready = "PRAGMA foreign_keys = ON;";
 	
 	public DB(Context context) {
@@ -28,7 +28,6 @@ public class DB extends SQLiteOpenHelper {
 				"nombre VARCHAR(150)," +
 				"FOREIGN KEY (id_operacion) REFERENCES operacion(id_operacion)" +
 				");");
-		prepararFK(db);
 	}
 	
 	@Override

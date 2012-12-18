@@ -52,13 +52,10 @@
 	            android:onClick="BotonCancelar"
 	            android:text="@+string/Cancelar" >
 	        </Button>
-	        
         </TableRow>
-        
     </TableLayout>
     
-    <GridView
-        xmlns:android="http://schemas.android.com/apk/res/android"
+    <GridView xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/capturaDatos"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -67,5 +64,4 @@
         android:numColumns="auto_fit"
         android:stretchMode="columnWidth" >
     </GridView>
-    
 </LinearLayout>

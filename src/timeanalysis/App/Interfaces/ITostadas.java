@@ -1,5 +1,5 @@
 package timeanalysis.App.Interfaces;
 
 public interface ITostadas {
-	public void MostrarTostada(final String tostada);
+	public abstract void MostrarTostada(final String tostada);
 }

@@ -1,7 +1,10 @@
 package timeanalysis.App;
 
+import java.util.List;
+
 import timeanalysis.App.Interfaces.IAlmacenemiento;
 import android.app.TabActivity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
@@ -16,13 +19,18 @@ Aqui se elige el tipo de salvado
 @SuppressWarnings("deprecation")
 public class MainActivity extends TabActivity {
 	
-	private String[] Datos;
+	public static Context contexto;
+	private List<String> Datos;
 	private static IAlmacenemiento DispositivoSalvado;
+	private Resources ressources;
+	private TabHost tabHost;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		
+		contexto = this;
 		
 		//Preparo tabs a la antigua
 		//Es posible hacer una implementacion moderna.
@@ -38,8 +46,8 @@ public class MainActivity extends TabActivity {
 	}
 	
 	public void PrepararTabs() {
-		Resources ressources = getResources(); 
-		TabHost tabHost = getTabHost();
+		ressources = getResources(); 
+		tabHost = getTabHost();
 		
 		Intent intentCaptura = new Intent().setClass(this, CapturaActivity.class);
 		
@@ -59,7 +67,7 @@ public class MainActivity extends TabActivity {
 		
 		TabSpec tabSpecTipoSalvado = tabHost
 				.newTabSpec("Tipo de Salvado")
-				.setIndicator("", ressources.getDrawable(R.drawable.ic_launcher))
+				.setIndicator("", ressources.getDrawable(R.drawable.icon_save))
 				.setContent(intentSalvado);
 		
 		tabHost.addTab(tabSpecCaptura);
@@ -69,19 +77,19 @@ public class MainActivity extends TabActivity {
 		tabHost.setCurrentTab(0);
 	}
 
-	public String[] getDatos() {
+	public List<String> getDatos() {
 		return this.Datos;
 	}
 	
-	public void setDatos(String dat[]) {
+	public void setDatos(List<String> dat) {
 		this.Datos = dat;
 	}
 	
-	public void setDispositivoSalvado(IAlmacenemiento alma) {
+	public static void setDispositivoSalvado(IAlmacenemiento alma) {
 		DispositivoSalvado = alma;
 	}
 	
-	public IAlmacenemiento getDispositivoSalvado() {
+	public static IAlmacenemiento getDispositivoSalvado() {
 		return DispositivoSalvado;
 	}
 	
