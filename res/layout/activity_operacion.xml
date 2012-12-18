@@ -3,30 +3,25 @@
     android:id="@+id/tableLayout1"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent" >
-    
+
     <TableRow
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center" >
-        
-        <LinearLayout
+
+        <EditText
+            android:id="@+id/editText1"
             android:layout_width="wrap_content"
-        	android:layout_height="wrap_content" >
-            
-            <EditText
-	            android:id="@+id/editText1"
-	            android:layout_width="wrap_content"
-	            android:layout_height="wrap_content"
-	            android:hint="@+string/EjemploOperacion"
-	            android:inputType="text" />
-	
-	        <Button
-	            android:id="@+id/Nuevo"
-	            android:layout_width="wrap_content"
-	            android:layout_height="wrap_content"
-	            android:onClick="NuevaOperacion"
-	            android:text="@+string/Nuevo" />
-        </LinearLayout>
+            android:layout_height="wrap_content"
+            android:hint="@+string/EjemploOperacion"
+            android:inputType="text" />
+
+        <Button
+            android:id="@+id/Nuevo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="NuevaOperacion"
+            android:text="@+string/Nuevo" />
     </TableRow>
 
     <TableRow
