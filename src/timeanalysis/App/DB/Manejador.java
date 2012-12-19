@@ -1,10 +1,12 @@
 package timeanalysis.App.DB;
 
 import timeanalysis.App.MainActivity;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
+@SuppressLint("Instantiatable")
 public class Manejador extends Activity{
 	
 	private static Manejador manejador;

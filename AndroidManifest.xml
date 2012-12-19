@@ -38,12 +38,6 @@
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.BROWSABLE"/>
             </intent-filter></activity>
-        <activity android:name="Login"
-            android:exported="false" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.BROWSABLE"/>
-            </intent-filter></activity>
         <activity android:name="ReporteActivity"
             android:exported="false" >
             <intent-filter>

@@ -92,8 +92,13 @@ public class GoogleDrive extends Activity implements IEspecial,IAlmacenemiento,I
 	}
 	
 	@Override
-	public void Archivo(Uri direccion) {
+	public void DireccionArchivo(Uri direccion) {
 		ArchivoUri = direccion;
+	}
+	
+	@Override
+	public Uri getArchivoUri() {
+		return ArchivoUri;
 	}
 	
 	@Override

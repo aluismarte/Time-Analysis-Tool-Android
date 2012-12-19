@@ -2,8 +2,10 @@
 <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/tableLayout1"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent" >
-
+    android:layout_height="fill_parent"
+    android:shrinkColumns="*"
+    android:stretchColumns="*" >
+    
     <TableRow
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -18,12 +20,28 @@
 
         <Button
             android:id="@+id/Nuevo"
-            android:layout_width="wrap_content"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:onClick="NuevaOperacion"
             android:text="@+string/Nuevo" />
     </TableRow>
-
+    
+    <TableRow
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+        
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:background="@android:color/black" />
+        
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:background="@android:color/black" />
+        
+    </TableRow>
+    
     <TableRow
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" >

@@ -1,7 +1,9 @@
 package timeanalysis.App;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import timeanalysis.App.Adaptadores.AdaptadorCronometro;
-import timeanalysis.App.Adaptadores.AdaptadorDatos;
 import timeanalysis.App.Interfaces.ITostadas;
 import android.app.Activity;
 import android.os.Bundle;
@@ -9,6 +11,7 @@ import android.os.SystemClock;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.TextView;
@@ -16,12 +19,11 @@ import android.widget.Toast;
 
 public class CapturaActivity extends Activity implements ITostadas {
 	
-	//Manejar cada columna a crear y hacer scroll
-	//private String[] Header = new String[] {"Ciclo","Op1","Op2","Op.."};
-	private String[] Datos = new String[] {"a","b"};
+	private List<String> Datos = new ArrayList<String>();
 	private GridView gridView;
 	private AdaptadorCronometro crono1;
 	private AdaptadorCronometro crono2;
+	private ArrayAdapter<String> adapter;
 	private Button SelecIniciar;
 	private Button Vuelta;
 	private Button Cancelar;
@@ -47,13 +49,14 @@ public class CapturaActivity extends Activity implements ITostadas {
 	public void PrepararView() {
 		gridView = (GridView) findViewById(R.id.capturaDatos);
 		
-		AdaptadorDatos adapter = new AdaptadorDatos(this, Datos);
+		adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, Datos);
 		
 		gridView.setAdapter(adapter);
+		gridView.setNumColumns(4);
 		
 		gridView.setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> parent, View v,int position, long id) {
-				Toast.makeText(getApplicationContext(),((TextView) v.findViewById(R.id.grid_item_label)).getText(), Toast.LENGTH_SHORT).show();
+				MostrarTostada(((TextView) v.findViewById(R.id.grid_item_label)).getText().toString());
 			}
 		});
 	}
@@ -61,38 +64,45 @@ public class CapturaActivity extends Activity implements ITostadas {
 	public void PrepararCronometro() {
 		crono1 = (AdaptadorCronometro) findViewById(R.id.chronometer1);;
 		crono2 = (AdaptadorCronometro) findViewById(R.id.chronometer2);;
-		
-		//crono1.start();
-		//crono2.start();
 	}
 	
 	public void BotonSelecIniciar(View view) {
 		if("Seleccionar".equals(SelecIniciar.getText())) {
+			
 			MostrarTostada("Seleccione un proceso");
 			//Hago el proceso de hacer una seleccion de la operacion.
 			SelecIniciar.setText(getString(R.string.Iniciar));
 			Vuelta.setEnabled(true);
 			Cancelar.setEnabled(true);
-		}else {
-			//Inicio el Cronometro
+		}else if("Iniciar".equals(SelecIniciar.getText())) {
 			crono1.setBase(SystemClock.elapsedRealtime());
 			crono2.setBase(SystemClock.elapsedRealtime());
 			crono1.start();
 			crono2.start();
-			SelecIniciar.setEnabled(false);
+			SelecIniciar.setText(getString(R.string.Pausar));
+		}else if("Pausar".equals(SelecIniciar.getText())) {
+			crono1.stop();
+			crono2.stop();
+			SelecIniciar.setText(getString(R.string.Continuar));
+		}else if("Continuar".equals(SelecIniciar.getText())) {
+			crono1.start();
+			crono2.start();
+			SelecIniciar.setText(getString(R.string.Pausar));
 		}
 	}
 	
 	public void BotonVuelta(View view) {
-		if("Iniciar".equals(SelecIniciar.getText())) {
-			//crono2.getText();
-			MostrarTostada("Una Captura");
+		if("Pausar".equals(SelecIniciar.getText())) {
+			InsertarValor(crono2.getText().toString());
+			adapter.notifyDataSetChanged();
+		}else {
+			MostrarTostada("No es posible guardar datos.");
 		}
 	}
 	
 	public void BotonCancelar(View view) {
-		if("Iniciar".equals(SelecIniciar.getText())) {
-			//crono2.getText();
+		if("Pausar".equals(SelecIniciar.getText()) || "Continuar".equals(SelecIniciar.getText()) 
+				|| "Iniciar".equals(SelecIniciar.getText())) {
 			crono1.stop();
 			crono2.stop();
 			crono1.setBase(SystemClock.elapsedRealtime());
@@ -101,16 +111,27 @@ public class CapturaActivity extends Activity implements ITostadas {
 			SelecIniciar.setEnabled(true);
 			Vuelta.setEnabled(false);
 			Cancelar.setEnabled(false);
-			MostrarTostada("Cancele");
+			BorrarModelo();
 		}
 	}
 	
-	public String[] getDatos() {
-		return this.Datos;
+	public void InsertarValor(String dat) {
+		Datos.add(dat);
 	}
 	
-	public void setDatos(String dat[]) {
-		this.Datos = dat;
+	public void BorrarModelo() {
+		if(!Datos.isEmpty()) {
+			Datos.clear();
+			adapter.notifyDataSetChanged();
+		}
+	}
+	
+	public List<String> getDatos() {
+		return Datos;
+	}
+	
+	public void setDatos(List<String> dat) {
+		Datos = dat;
 	}
 
 	@Override

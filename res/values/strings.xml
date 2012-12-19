@@ -17,5 +17,9 @@
     <string name="OK">OK</string>
     <string name="Cancel">Cancelar</string>
     <string name="EjemploElemento">Nombre del elemento</string>
+    <string name="BorrarTodo">Borrar Todo</string>
+    <string name="Pausar">Pausar</string>
+    <string name="Continuar">Continuar</string>
+    <string name="Reiniciar">Reiniciar</string>
 
 </resources>
