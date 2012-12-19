@@ -3,8 +3,11 @@ package timeanalysis.App;
 import java.util.List;
 
 import timeanalysis.App.Interfaces.IAlmacenemiento;
+import timeanalysis.App.Tools.Interno;
+import android.app.AlertDialog;
 import android.app.TabActivity;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
@@ -23,7 +26,7 @@ public class MainActivity extends TabActivity {
 	private List<String> Datos;
 	private static IAlmacenemiento DispositivoSalvado;
 	private Resources ressources;
-	private TabHost tabHost;
+	private static TabHost tabHost;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +34,8 @@ public class MainActivity extends TabActivity {
 		setContentView(R.layout.activity_main);
 		
 		contexto = this;
+		
+		setDispositivoSalvado(new Interno());
 		
 		//Preparo tabs a la antigua
 		//Es posible hacer una implementacion moderna.
@@ -40,9 +45,18 @@ public class MainActivity extends TabActivity {
 	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.activity_main, menu);
 		return true;
+	}
+	
+	private void Acerca() {
+		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+		builder.setMessage(R.string.about).setTitle(R.string.AboutTitulo);
+		builder.setPositiveButton(R.string.OK, new DialogInterface.OnClickListener() {
+	           public void onClick(DialogInterface dialog, int id) {
+	               dialog.dismiss();
+	           }
+	    });
 	}
 	
 	public void PrepararTabs() {
@@ -63,6 +77,13 @@ public class MainActivity extends TabActivity {
 				.setIndicator("", ressources.getDrawable(R.drawable.icon_operacion))
 				.setContent(intentOperacion);
 		
+		Intent intentReporte = new Intent().setClass(this, ReporteActivity.class);
+		
+		TabSpec tabSpecReporte = tabHost
+				.newTabSpec("Reportes")
+				.setIndicator("", ressources.getDrawable(R.drawable.icon_reporte))
+				.setContent(intentReporte);
+		
 		Intent intentSalvado = new Intent().setClass(this, SalvadoActivity.class);
 		
 		TabSpec tabSpecTipoSalvado = tabHost
@@ -72,6 +93,7 @@ public class MainActivity extends TabActivity {
 		
 		tabHost.addTab(tabSpecCaptura);
 		tabHost.addTab(tabSpecOperacion);
+		tabHost.addTab(tabSpecReporte);
 		tabHost.addTab(tabSpecTipoSalvado);
 		
 		tabHost.setCurrentTab(0);
@@ -83,6 +105,14 @@ public class MainActivity extends TabActivity {
 	
 	public void setDatos(List<String> dat) {
 		this.Datos = dat;
+	}
+	
+	private static void setTab(int i) {
+		tabHost.setCurrentTab(i);
+	}
+	
+	public static void setTabCaptura() {
+		setTab(0);
 	}
 	
 	public static void setDispositivoSalvado(IAlmacenemiento alma) {

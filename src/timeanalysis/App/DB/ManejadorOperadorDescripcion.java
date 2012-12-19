@@ -40,7 +40,7 @@ public class ManejadorOperadorDescripcion implements IManejador {
 		ContentValues values = new ContentValues();
 		values.put(ID_Ope, opeDesMod.getIdOperacion());
 		values.put(Nombre, opeDesMod.getNombre());
-		Manejador.getInstancia().getDB().insert(Tabla, null,values);
+		Manejador.getInstancia().getDB().insert(Tabla, ID_Des + " = " + opeDesMod.getIdOperacion(),values);
 		Terminar();
 	}
 	

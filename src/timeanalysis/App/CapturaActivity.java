@@ -27,6 +27,8 @@ public class CapturaActivity extends Activity implements ITostadas {
 	private Button SelecIniciar;
 	private Button Vuelta;
 	private Button Cancelar;
+	private Long TiempoPausa1 = (long) 0;
+	private Long TiempoPausa2 = (long) 0;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +58,7 @@ public class CapturaActivity extends Activity implements ITostadas {
 		
 		gridView.setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> parent, View v,int position, long id) {
-				MostrarTostada(((TextView) v.findViewById(R.id.grid_item_label)).getText().toString());
+			   MostrarTostada(((TextView) v).getText().toString());
 			}
 		});
 	}
@@ -81,11 +83,15 @@ public class CapturaActivity extends Activity implements ITostadas {
 			crono2.start();
 			SelecIniciar.setText(getString(R.string.Pausar));
 		}else if("Pausar".equals(SelecIniciar.getText())) {
+			TiempoPausa1 = crono1.getBase() - SystemClock.elapsedRealtime();
 			crono1.stop();
+			TiempoPausa2 = crono2.getBase() - SystemClock.elapsedRealtime();
 			crono2.stop();
 			SelecIniciar.setText(getString(R.string.Continuar));
 		}else if("Continuar".equals(SelecIniciar.getText())) {
+			crono1.setBase(SystemClock.elapsedRealtime() + TiempoPausa1);
 			crono1.start();
+			crono2.setBase(SystemClock.elapsedRealtime() + TiempoPausa2);
 			crono2.start();
 			SelecIniciar.setText(getString(R.string.Pausar));
 		}
@@ -94,6 +100,7 @@ public class CapturaActivity extends Activity implements ITostadas {
 	public void BotonVuelta(View view) {
 		if("Pausar".equals(SelecIniciar.getText())) {
 			InsertarValor(crono2.getText().toString());
+			crono2.setBase(SystemClock.elapsedRealtime());
 			adapter.notifyDataSetChanged();
 		}else {
 			MostrarTostada("No es posible guardar datos.");
@@ -106,7 +113,9 @@ public class CapturaActivity extends Activity implements ITostadas {
 			crono1.stop();
 			crono2.stop();
 			crono1.setBase(SystemClock.elapsedRealtime());
+			TiempoPausa1 = (long) 0;
 			crono2.setBase(SystemClock.elapsedRealtime());
+			TiempoPausa2 = (long) 0;
 			SelecIniciar.setText(getString(R.string.Seleccionar));
 			SelecIniciar.setEnabled(true);
 			Vuelta.setEnabled(false);

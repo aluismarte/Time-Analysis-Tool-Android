@@ -1,9 +1,18 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
 
     <item
+        android:id="@+id/SalvarMenu"
+        android:title="@string/SalvarTitulo"
+        android:orderInCategory="100"
+        android:showAsAction="never" />
+    <item
         android:id="@+id/menu_settings"
         android:orderInCategory="100"
         android:showAsAction="never"
-        android:title="@string/menu_settings"/>
-
+        android:title="@string/menu_settings" />
+    <item
+        android:id="@+id/About"
+        android:title="@string/AboutTitulo"
+        android:orderInCategory="100"
+        android:showAsAction="never" />
 </menu>

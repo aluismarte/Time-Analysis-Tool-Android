@@ -19,6 +19,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class OperacionActivity extends Activity implements ITostadas {
@@ -57,9 +58,13 @@ public class OperacionActivity extends Activity implements ITostadas {
 		listView.setOnItemClickListener(new OnItemClickListener() {
 			  @Override
 			  public void onItemClick(AdapterView<?> parent, View view,int position, long id) {
-				  LlenarModeloElementos(operaciones.get(position));
-				  IDOperacionElemento = position;
-				  Elemento();
+				  if("No hay nada".equals(((TextView) view).getText().toString())) {
+					  MostrarTostada("Inserte una operacion.");
+				  }else {
+					  LlenarModeloElementos(operaciones.get(position));
+					  IDOperacionElemento = position;
+					  Elemento();
+				  }
 			  }
 		});
 	}
@@ -83,13 +88,14 @@ public class OperacionActivity extends Activity implements ITostadas {
 		OperacionDescripcionModelo lol = new OperacionDescripcionModelo();
 		if(!"".equals(texElemento.getText())) {
 			lol.setNombre(texElemento.getText().toString());
-			lol.setIdOperacion(IDOperacionElemento);
+			lol.setIdOperacion(operaciones.get(IDOperacionElemento).getId());
 			ManejadorOperadorDescripcion.getInstancia().Preparar(lol);
-			ManejadorOperacion.getInstancia().Insertar();
+			ManejadorOperadorDescripcion.getInstancia().Insertar();
 			MostrarTostada("Se inserto con exito");
-			tex.setText("");
-			LlenarModeloOperaciones();
-			adapterOperaciones.notifyDataSetChanged();
+			texElemento.setText("");
+			OperacionModelo om = operaciones.get(IDOperacionElemento);
+			LlenarModeloElementos(om);
+			adapterElementos.notifyDataSetChanged();
 		}else {
 			MostrarTostada("EL campo no puede estar vacio");
 		}
@@ -103,7 +109,7 @@ public class OperacionActivity extends Activity implements ITostadas {
 				Operacionesvalues.add(operaciones.get(i).getNombre());
 			}
 		}else {
-			Operacionesvalues.add("");
+			Operacionesvalues.add("No hay nada");
 		}
 	}
 	
@@ -141,14 +147,14 @@ public class OperacionActivity extends Activity implements ITostadas {
 		listViewElemento.setAdapter(adapterElementos);
 		adapterElementos.notifyDataSetChanged();
 		
-		texElemento = (EditText) dialog.findViewById(R.id.editText2);
+		texElemento = (EditText) dialog.findViewById(R.id.elemento);
 		
-		Button ButtonOK = (Button) dialog.findViewById(R.id.Ok);
+		Button ButtonOK = (Button) dialog.findViewById(R.id.OK);
 		Button ButtonCancel = (Button) dialog.findViewById(R.id.Cancel);
 		ButtonOK.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				
+				NuevoElemento(v);
 			}
 		});
 		ButtonCancel.setOnClickListener(new OnClickListener() {

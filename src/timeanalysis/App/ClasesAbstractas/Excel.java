@@ -38,4 +38,9 @@ public abstract class Excel {
 		}
 		sheet.addCell(newCell);
 	}
+	
+	public void CerrarArchivo() throws WriteException, IOException {
+		wb.close();
+	}
+	
 }

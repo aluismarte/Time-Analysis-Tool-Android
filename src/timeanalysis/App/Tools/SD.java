@@ -18,16 +18,21 @@ public class SD extends Excel implements IAlmacenemiento,ITostadas {
 	private String Carpeta = "/Reportes";
 	private String NombreArchivo = "";
 	private String Extension = ".xls";
-	private File Dir = Environment.getExternalStorageDirectory();
+	private File Dir;
 	private File Archivo;
 	
 	public SD() {
-		Dir = new File(MainActivity.contexto.getFilesDir(), Carpeta);
-		if(Dir.mkdir()) {
-			MostrarTostada("Se creo un directorio en la SD.");
+		if(isExternalStorageReadable() && isExternalStorageWritable()) {
+			Dir = new File(Environment.getExternalStorageDirectory(), Carpeta);
+			if(Dir.mkdir()) {
+				MostrarTostada("Se creo un directorio en la SD.");
+			}
+			wb = null;
+			wbSettings = new WorkbookSettings();
+		}else {
+			MostrarTostada("La memoria SD no esta disponible");
 		}
-		wb = null;
-		wbSettings = new WorkbookSettings();
+		
 	}
 	
 	public void PreparoArchivo() {

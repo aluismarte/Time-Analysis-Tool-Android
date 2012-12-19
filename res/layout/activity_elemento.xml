@@ -9,31 +9,30 @@
         android:gravity="center" >
 
         <EditText
-            android:id="@+id/editText2"
+            android:id="@+id/elemento"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="@+string/EjemploElemento"
             android:inputType="text" />
     </TableRow>
-
-    <TableRow
+    
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center" >
-
+        
+        <Button
+            android:id="@+id/OK"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@+string/Nuevo" />
+        
         <Button
             android:id="@+id/Cancel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@+string/Cancel" />
-
-        <Button
-            android:id="@+id/Ok"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@+string/Nuevo" >
-        </Button>
-    </TableRow>
+    </LinearLayout>
 
     <TableRow
         android:layout_width="match_parent"

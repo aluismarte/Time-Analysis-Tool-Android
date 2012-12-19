@@ -35,6 +35,7 @@ public class Manejador extends Activity{
 	}
 	
 	public SQLiteDatabase getDB() {
+		db.prepararFK(database);
 		return database;
 	}
 	
