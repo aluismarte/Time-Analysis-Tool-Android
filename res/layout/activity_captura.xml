@@ -59,15 +59,15 @@
             
             <View
 			    android:layout_width="match_parent"
-			    android:layout_height="5dp"
+			    android:layout_height="3dp"
 			    android:background="@android:color/black"/>
             <View
 			    android:layout_width="match_parent"
-			    android:layout_height="5dp"
+			    android:layout_height="3dp"
 			    android:background="@android:color/black"/>
             <View
 			    android:layout_width="match_parent"
-			    android:layout_height="5dp"
+			    android:layout_height="3dp"
 			    android:background="@android:color/black"/>
             
         </TableRow>
