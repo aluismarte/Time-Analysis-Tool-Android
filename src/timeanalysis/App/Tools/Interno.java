@@ -117,7 +117,7 @@ public class Interno extends Excel implements IAlmacenemiento,ITostadas {
 	
 	@Override
 	public void MostrarTostada(final String tostada) {
-		Toast.makeText(MainActivity.contexto, tostada, Toast.LENGTH_SHORT).show();
+		Toast.makeText(MainActivity.contexto, tostada, Toast.LENGTH_LONG).show();
 	}
 	
 }

@@ -156,7 +156,7 @@ public class GoogleDrive extends Activity implements IEspecial,IAlmacenemiento,I
 		runOnUiThread(new Runnable() {
 			@Override
 			public void run() {
-				Toast.makeText(getApplicationContext(), tostada, Toast.LENGTH_SHORT).show();
+				Toast.makeText(getApplicationContext(), tostada, Toast.LENGTH_LONG).show();
 			}
 		});
 	}

@@ -13,7 +13,15 @@ public class Utileria {
 		return instancia;
 	}
 	
-	public void CrearDireccionArchivo(final String archivo, final int ubicacion) {
+	public void ObtenerListadoArchivos() {
+		
+	}
+	
+	public void ExplorarCarpeta(String carpeta) {
+		
+	}
+	
+	public void CrearDireccionArchivo(String archivo) {
 		//Creo el path correspondiente del archivo.
 		//Esto puede estar en 2 lugares [Interno y SD]
 	}

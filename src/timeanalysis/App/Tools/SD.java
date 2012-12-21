@@ -109,11 +109,6 @@ public class SD extends Excel implements IAlmacenemiento,ITostadas {
 	}
 
 	@Override
-	public void MostrarTostada(String tostada) {
-		Toast.makeText(MainActivity.contexto, tostada, Toast.LENGTH_SHORT).show();
-	}
-
-	@Override
 	public String getNombreArchivo() {
 		return this.NombreArchivo;
 	}
@@ -131,6 +126,11 @@ public class SD extends Excel implements IAlmacenemiento,ITostadas {
 	@Override
 	public void CerrarArchivo() throws WriteException, IOException {
 		wb.close();
+	}
+	
+	@Override
+	public void MostrarTostada(String tostada) {
+		Toast.makeText(MainActivity.contexto, tostada, Toast.LENGTH_LONG).show();
 	}
 	
 }
