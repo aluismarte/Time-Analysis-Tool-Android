@@ -42,6 +42,7 @@ public class SalvadoActivity extends Activity implements ITostadas {
 					MainActivity.setTabCaptura();
 				}else if("Google Drive".equals(((TextView) view).getText())) {
 					//Todavia no implemento.
+					//Este texto no va.
 					MostrarTostada("No esta implementado todavia");
 				}
 			}

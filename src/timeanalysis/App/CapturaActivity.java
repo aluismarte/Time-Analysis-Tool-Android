@@ -69,54 +69,54 @@ public class CapturaActivity extends Activity implements ITostadas {
 	}
 	
 	public void BotonSelecIniciar(View view) {
-		if("Seleccionar".equals(SelecIniciar.getText())) {
-			
+		if((getString(R.string.Seleccionar).toString()).equals(SelecIniciar.getText())) {
 			MostrarTostada("Seleccione un proceso");
 			//Hago el proceso de hacer una seleccion de la operacion.
-			SelecIniciar.setText(getString(R.string.Iniciar));
+			SelecIniciar.setText(getString(R.string.Iniciar).toString());
 			Vuelta.setEnabled(true);
 			Cancelar.setEnabled(true);
-		}else if("Iniciar".equals(SelecIniciar.getText())) {
+		}else if((getString(R.string.Iniciar).toString()).equals(SelecIniciar.getText())) {
 			crono1.setBase(SystemClock.elapsedRealtime());
 			crono2.setBase(SystemClock.elapsedRealtime());
 			crono1.start();
 			crono2.start();
-			SelecIniciar.setText(getString(R.string.Pausar));
-		}else if("Pausar".equals(SelecIniciar.getText())) {
+			SelecIniciar.setText(getString(R.string.Pausar).toString());
+		}else if((getString(R.string.Pausar).toString()).equals(SelecIniciar.getText())) {
 			TiempoPausa1 = crono1.getBase() - SystemClock.elapsedRealtime();
 			crono1.stop();
 			TiempoPausa2 = crono2.getBase() - SystemClock.elapsedRealtime();
 			crono2.stop();
-			SelecIniciar.setText(getString(R.string.Continuar));
-		}else if("Continuar".equals(SelecIniciar.getText())) {
+			SelecIniciar.setText(getString(R.string.Continuar).toString());
+		}else if((getString(R.string.Continuar).toString()).equals(SelecIniciar.getText())) {
 			crono1.setBase(SystemClock.elapsedRealtime() + TiempoPausa1);
 			crono1.start();
 			crono2.setBase(SystemClock.elapsedRealtime() + TiempoPausa2);
 			crono2.start();
-			SelecIniciar.setText(getString(R.string.Pausar));
+			SelecIniciar.setText(getString(R.string.Pausar).toString());
 		}
 	}
 	
 	public void BotonVuelta(View view) {
-		if("Pausar".equals(SelecIniciar.getText())) {
+		if((getString(R.string.Pausar).toString()).equals(SelecIniciar.getText())) {
 			InsertarValor(crono2.getText().toString());
 			crono2.setBase(SystemClock.elapsedRealtime());
 			adapter.notifyDataSetChanged();
 		}else {
-			MostrarTostada("No es posible guardar datos.");
+			MostrarTostada(getString(R.string.NoSalvarDatos).toString());
 		}
 	}
 	
 	public void BotonCancelar(View view) {
-		if("Pausar".equals(SelecIniciar.getText()) || "Continuar".equals(SelecIniciar.getText()) 
-				|| "Iniciar".equals(SelecIniciar.getText())) {
+		if((getString(R.string.Pausar).toString()).equals(SelecIniciar.getText()) 
+				|| (getString(R.string.Continuar).toString()).equals(SelecIniciar.getText()) 
+				|| (getString(R.string.Iniciar).toString()).equals(SelecIniciar.getText())) {
 			crono1.stop();
 			crono2.stop();
 			crono1.setBase(SystemClock.elapsedRealtime());
 			TiempoPausa1 = (long) 0;
 			crono2.setBase(SystemClock.elapsedRealtime());
 			TiempoPausa2 = (long) 0;
-			SelecIniciar.setText(getString(R.string.Seleccionar));
+			SelecIniciar.setText(getString(R.string.Seleccionar).toString());
 			SelecIniciar.setEnabled(true);
 			Vuelta.setEnabled(false);
 			Cancelar.setEnabled(false);

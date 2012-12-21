@@ -2,6 +2,9 @@ package timeanalysis.App.Tools;
 
 import java.io.IOException;
 
+import jxl.write.WriteException;
+
+import timeanalysis.App.R;
 import timeanalysis.App.Interfaces.IAlmacenemiento;
 import timeanalysis.App.Interfaces.IEspecial;
 import timeanalysis.App.Interfaces.ITostadas;
@@ -34,6 +37,7 @@ public class GoogleDrive extends Activity implements IEspecial,IAlmacenemiento,I
 	private GoogleAccountCredential credencial;
 	private Intent data;
 	private String NombreCuenta;
+	private String NombreArchivo;
 	
 	public GoogleDrive() {
 		Configuracion();
@@ -41,6 +45,21 @@ public class GoogleDrive extends Activity implements IEspecial,IAlmacenemiento,I
 	
 	private Drive getDriveServicio(GoogleAccountCredential credential) {
 	    return new Drive.Builder(AndroidHttp.newCompatibleTransport(), new GsonFactory(), credential).build();
+	}
+	
+	@Override
+	public void EscribirDatosRecolectados() {
+		
+	}
+
+	@Override
+	public void EscribirDatosAnalisis() {
+		
+	}
+	
+	@Override
+	public void PreparoArchivo() {
+		//No implemento aqui.
 	}
 	
 	@Override
@@ -66,14 +85,14 @@ public class GoogleDrive extends Activity implements IEspecial,IAlmacenemiento,I
 					
 					File file = servicio.files().insert(cuerpo, ContenidoMedia).execute();
 					if (file != null) {
-						MostrarTostada("Se subio el archivo con exito.");
+						MostrarTostada(getString(R.string.ArchivoSubidaExito).toString());
 					}else {
-						MostrarTostada("Ocurio un error.");
+						MostrarTostada(getString(R.string.OcurrioError).toString());
 					}
 				} catch (UserRecoverableAuthIOException e) {
 					Configuracion();
 				} catch (IOException e) {
-					MostrarTostada("Ocurio un error grave en el codigo.");
+					MostrarTostada(getString(R.string.ErrorGrave).toString());
 					e.printStackTrace();
 				}
 			}
@@ -83,12 +102,12 @@ public class GoogleDrive extends Activity implements IEspecial,IAlmacenemiento,I
 	
 	@Override
 	public void Actualizar() {
-		
+		//No esta implementado.
 	}
 	
 	@Override
 	public void Borrar() {
-		
+		//No esta implementado.
 	}
 	
 	@Override
@@ -110,6 +129,27 @@ public class GoogleDrive extends Activity implements IEspecial,IAlmacenemiento,I
 			credencial.setSelectedAccountName(NombreCuenta);
 			servicio = getDriveServicio(credencial);
 		}
+	}
+	
+	@Override
+	public String getNombreArchivo() {
+		return this.NombreArchivo;
+	}
+	
+	@Override
+	public void setNombreArchivo(String name) {
+		this.NombreArchivo = name;
+	}
+	
+	@Override
+	public java.io.File getArchivo() {
+		//No esta implementado.
+		return null;
+	}
+	
+	@Override
+	public void CerrarArchivo() throws WriteException, IOException {
+		//Aqui cierro el archivo.
 	}
 	
 	public void MostrarTostada(final String tostada) {

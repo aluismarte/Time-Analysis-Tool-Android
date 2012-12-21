@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/tableLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+    
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@+string/MenuSalvadoLetrero"
+        android:gravity="center" />
+    
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center" >
+        
+        <EditText
+            android:id="@+id/NombreArchivoSalvar"
+            android:layout_width="wrap_content"
+        	android:layout_height="wrap_content"
+        	android:hint="@+string/NombreArchivo"
+        	android:inputType="text" />
+        
+        <Button
+            android:id="@+id/BotonSalvarMenu"
+            android:layout_width="wrap_content"
+        	android:layout_height="wrap_content"
+        	android:text="@+string/SalvarTitulo" />
+        
+    </LinearLayout>
+    
+</TableLayout>

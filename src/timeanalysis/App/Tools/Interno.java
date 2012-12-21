@@ -4,8 +4,10 @@ import java.io.File;
 import java.io.IOException;
 
 import jxl.WorkbookSettings;
+import jxl.write.WriteException;
 
 import timeanalysis.App.MainActivity;
+import timeanalysis.App.R;
 import timeanalysis.App.ClasesAbstractas.Excel;
 import timeanalysis.App.Interfaces.IAlmacenemiento;
 import timeanalysis.App.Interfaces.ITostadas;
@@ -14,7 +16,7 @@ import android.widget.Toast;
 
 public class Interno extends Excel implements IAlmacenemiento,ITostadas {
 	
-	private String Carpeta = "/Reportes";
+	private String Carpeta = getString(R.string.NombreCarpeta).toString();
 	private String NombreArchivo = "";
 	private String Extension = ".xls";
 	private File Dir;
@@ -23,12 +25,29 @@ public class Interno extends Excel implements IAlmacenemiento,ITostadas {
 	public Interno() {
 		Dir = new File(MainActivity.contexto.getFilesDir(), Carpeta);
 		if(Dir.mkdir()) {
-			MostrarTostada("Se creo un directorio interno.");
+			MostrarTostada(getString(R.string.CreoDirectorioInterno).toString());
 		}
 		wb = null;
 		wbSettings = new WorkbookSettings();
 	}
 	
+	@Override
+	public void EscribirDatosRecolectados() {
+		CrearHoja(wb, getString(R.string.NombreHoja).toString(), 0);
+//		Aqui me valgo de la config para poner esos datos correctamente.
+//		for(int i = 0; i < 2; i++) {
+//			for(int j = 0; j < 2; j++) {
+//				
+//			}
+//		}
+	}
+	
+	@Override
+	public void EscribirDatosAnalisis() {
+		//Aqui supone que pongo los calculos estadisticos.
+	}
+	
+	@Override
 	public void PreparoArchivo() {
 		if(!"".equals(NombreArchivo)) {
 			String ArchivoCompleto = NombreArchivo + Extension;
@@ -52,6 +71,7 @@ public class Interno extends Excel implements IAlmacenemiento,ITostadas {
 				e.printStackTrace();
 			}
 		}
+		EscribirDatosRecolectados();
 	}
 
 	@Override
@@ -76,16 +96,24 @@ public class Interno extends Excel implements IAlmacenemiento,ITostadas {
 		return Uri.fromFile(Archivo);
 	}
 	
+	@Override
 	public String getNombreArchivo() {
 		return NombreArchivo;
 	}
 	
+	@Override
 	public void setNombreArchivo(String name) {
 		NombreArchivo = name;
 	}
 	
+	@Override
 	public File getArchivo() {
 		return Archivo;
+	}
+	
+	@Override
+	public void CerrarArchivo() throws WriteException, IOException {
+		wb.close();
 	}
 	
 	@Override

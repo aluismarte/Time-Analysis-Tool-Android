@@ -3,6 +3,8 @@ package timeanalysis.App.ClasesAbstractas;
 import java.io.File;
 import java.io.IOException;
 
+import android.app.Activity;
+
 import jxl.Workbook;
 import jxl.WorkbookSettings;
 import jxl.format.Alignment;
@@ -14,13 +16,13 @@ import jxl.write.WritableWorkbook;
 import jxl.write.WriteException;
 import jxl.write.biff.RowsExceededException;
 
-public abstract class Excel {
+public abstract class Excel extends Activity {
 	
 	public WritableWorkbook wb;
 	public WorkbookSettings wbSettings;
 	
 	public void EscribirArchivo(File Archivo) throws IOException {
-		wbSettings.setUseTemporaryFileDuringWrite(true);
+		wbSettings.setUseTemporaryFileDuringWrite(false);
 		wb = Workbook.createWorkbook(Archivo,wbSettings);
 	}
 	
@@ -37,10 +39,6 @@ public abstract class Excel {
 			newCell.setCellFormat(headerFormat);
 		}
 		sheet.addCell(newCell);
-	}
-	
-	public void CerrarArchivo() throws WriteException, IOException {
-		wb.close();
 	}
 	
 }

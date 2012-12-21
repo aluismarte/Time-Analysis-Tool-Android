@@ -1,10 +1,6 @@
 package timeanalysis.App.Tools;
 
-import android.annotation.SuppressLint;
-import android.app.Activity;
-
-@SuppressLint("Instantiatable")
-public class Utileria extends Activity {
+public class Utileria {
 	
 	public static Utileria instancia = null;
 	

@@ -59,7 +59,7 @@ public class OperacionActivity extends Activity implements ITostadas {
 			  @Override
 			  public void onItemClick(AdapterView<?> parent, View view,int position, long id) {
 				  if("No hay nada".equals(((TextView) view).getText().toString())) {
-					  MostrarTostada("Inserte una operacion.");
+					  MostrarTostada(getString(R.string.InserteOperacion).toString());
 				  }else {
 					  LlenarModeloElementos(operaciones.get(position));
 					  IDOperacionElemento = position;
@@ -75,12 +75,12 @@ public class OperacionActivity extends Activity implements ITostadas {
 			lol.setNombre(tex.getText().toString());
 			ManejadorOperacion.getInstancia().Preparar(lol);
 			ManejadorOperacion.getInstancia().Insertar();
-			MostrarTostada("Se inserto con exito");
+			MostrarTostada(getString(R.string.InsertoExito).toString());
 			tex.setText("");
 			LlenarModeloOperaciones();
 			adapterOperaciones.notifyDataSetChanged();
 		}else {
-			MostrarTostada("EL campo no puede estar vacio");
+			MostrarTostada(getString(R.string.CampoVacio).toString());
 		}
 	}
 	
@@ -91,13 +91,13 @@ public class OperacionActivity extends Activity implements ITostadas {
 			lol.setIdOperacion(operaciones.get(IDOperacionElemento).getId());
 			ManejadorOperadorDescripcion.getInstancia().Preparar(lol);
 			ManejadorOperadorDescripcion.getInstancia().Insertar();
-			MostrarTostada("Se inserto con exito");
+			MostrarTostada(getString(R.string.InsertoExito).toString());
 			texElemento.setText("");
 			OperacionModelo om = operaciones.get(IDOperacionElemento);
 			LlenarModeloElementos(om);
 			adapterElementos.notifyDataSetChanged();
 		}else {
-			MostrarTostada("EL campo no puede estar vacio");
+			MostrarTostada(getString(R.string.CampoVacio).toString());
 		}
 	}
 	
@@ -109,7 +109,7 @@ public class OperacionActivity extends Activity implements ITostadas {
 				Operacionesvalues.add(operaciones.get(i).getNombre());
 			}
 		}else {
-			Operacionesvalues.add("No hay nada");
+			Operacionesvalues.add(getString(R.string.Nohay).toString());
 		}
 	}
 	
@@ -123,7 +123,7 @@ public class OperacionActivity extends Activity implements ITostadas {
 				Elementosvalues.add(elementos.get(i).getNombre());
 			}
 		}else {
-			Elementosvalues.add("No hay nada");
+			Elementosvalues.add(getString(R.string.Nohay).toString());
 		}
 	}
 	
@@ -140,7 +140,7 @@ public class OperacionActivity extends Activity implements ITostadas {
 	public void Elemento() {
 		final Dialog dialog = new Dialog(this);
 		dialog.setContentView(R.layout.activity_elemento);
-		dialog.setTitle("Elementos");
+		dialog.setTitle(getString(R.string.elementos));
 		
 		listViewElemento = (ListView) dialog.findViewById(R.id.ListaElementos);
 		adapterElementos = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,Elementosvalues);

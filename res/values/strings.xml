@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <string name="app_name">Time Analysis Tool</string>
-    <string name="hello_world">Hola mundo</string>
     <string name="menu_settings">Configuracion</string>
     <string name="elemento">Elemento</string>
     <string name="operacion">Operacion</string>
     <string name="Parar">Parar</string>
-    <string name="Iniciar">Iniciar</string>
     <string name="Captura">Captura</string>
     <string name="Cancelar">Cancelar</string>
     <string name="Seleccionar">Seleccionar</string>
@@ -18,12 +15,33 @@
     <string name="Cancel">Cancelar</string>
     <string name="EjemploElemento">Nombre del elemento</string>
     <string name="BorrarTodo">Borrar Todo</string>
-    <string name="Pausar">Pausar</string>
-    <string name="Continuar">Continuar</string>
     <string name="Reiniciar">Reiniciar</string>
-    <string name="about">Esto es una aplicación para el análisis y estudio del tiempo.</string>
+    <string name="about">Esto es una aplicación para el análisis y estudio del tiempo. Para problemas o mejoras contactar por correo a aluismarte@gmail.com</string>
     <string name="AboutTitulo">Acerca</string>
     <string name="SalvarTitulo">Salvar</string>
     <string name="Reporte">Tab de reportes</string>
-
+    <string name="abrir">Abrir</string>
+    <string name="MenuSalvadoLetrero">Especifique donde desea guardar</string>
+    <string name="NombreArchivo">Digite el nombre del archivo</string>
+    <string name="elementos">Elementos</string>
+    <string name="ErrorEscritura">Error de escritura.</string>
+    <string name="ErrorIO">Error de entrada y salida del archivo.</string>
+    <string name="ExitoArchivo">El archivo se creo con exito.</string>
+    <string name="InserteNombre">La memoria SD no esta disponible o no es posible escribir en ella. un nombre</string>
+    <string name="NombreHoja">Datos</string>
+    <string name="NombreCarpeta">/TimeAnalysisTool</string>
+    <string name="Iniciar">Iniciar</string>
+    <string name="Pausar">Pausar</string>
+    <string name="Continuar">Continuar</string>
+    <string name="NoSalvarDatos">No es posible guardar datos.</string>
+    <string name="InserteOperacion">Inserte una operacion.</string>
+    <string name="InsertoExito">Se inserto con exito</string>
+    <string name="CampoVacio">EL campo no puede estar vacio</string>
+    <string name="Nohay">No hay nada</string>
+    <string name="ArchivoSubidaExito">Se subio el archivo con exito.</string>
+    <string name="OcurrioError">Ocurrio un error.</string>
+    <string name="ErrorGrave">Ocurrio un error grave en el codigo.</string>
+    <string name="CreoDirectorioInterno">Se creo un directorio interno.</string>
+    <string name="CreoDirectorioSD">Se creo un directorio en la SD.</string>
+    <string name="SDNoDisponible">La memoria SD no esta disponible o no es posible escribir en ella.</string>
 </resources>
