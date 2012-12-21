@@ -5,9 +5,7 @@ import java.io.IOException;
 
 import jxl.WorkbookSettings;
 import jxl.write.WriteException;
-
 import timeanalysis.App.MainActivity;
-import timeanalysis.App.R;
 import timeanalysis.App.ClasesAbstractas.Excel;
 import timeanalysis.App.Interfaces.IAlmacenemiento;
 import timeanalysis.App.Interfaces.ITostadas;
@@ -17,7 +15,6 @@ import android.widget.Toast;
 
 public class SD extends Excel implements IAlmacenemiento,ITostadas {
 	
-	private String Carpeta = "/TimeAnalysisTool";
 	private String NombreArchivo = "";
 	private String Extension = ".xls";
 	private File Dir;
@@ -27,12 +24,12 @@ public class SD extends Excel implements IAlmacenemiento,ITostadas {
 		if(isExternalStorageReadable() && isExternalStorageWritable()) {
 			Dir = new File(Environment.getExternalStorageDirectory(), Carpeta);
 			if(Dir.mkdir()) {
-				MostrarTostada(getString(R.string.CreoDirectorioSD).toString());
+				MostrarTostada(MainActivity.BuscarTexto(2));
 			}
 			wb = null;
 			wbSettings = new WorkbookSettings();
 		}else {
-			MostrarTostada(getString(R.string.SDNoDisponible).toString());
+			MostrarTostada(MainActivity.BuscarTexto(3));
 		}
 		
 	}

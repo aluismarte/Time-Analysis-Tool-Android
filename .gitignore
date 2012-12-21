@@ -21,3 +21,6 @@ local.properties
 
 #Archivo para enviar cambios
 Cambios.sh
+
+#Archivo de control de drive
+Datos-Drive-Servicio.txt

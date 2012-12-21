@@ -3,7 +3,7 @@ package timeanalysis.App.ClasesAbstractas;
 import java.io.File;
 import java.io.IOException;
 
-import android.app.Activity;
+import timeanalysis.App.MainActivity;
 
 import jxl.Workbook;
 import jxl.WorkbookSettings;
@@ -16,8 +16,9 @@ import jxl.write.WritableWorkbook;
 import jxl.write.WriteException;
 import jxl.write.biff.RowsExceededException;
 
-public abstract class Excel extends Activity {
+public abstract class Excel {
 	
+	protected String Carpeta = MainActivity.BuscarTexto(1);
 	public WritableWorkbook wb;
 	public WorkbookSettings wbSettings;
 	

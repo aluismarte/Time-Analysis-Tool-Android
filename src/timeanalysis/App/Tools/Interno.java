@@ -7,7 +7,6 @@ import jxl.WorkbookSettings;
 import jxl.write.WriteException;
 
 import timeanalysis.App.MainActivity;
-import timeanalysis.App.R;
 import timeanalysis.App.ClasesAbstractas.Excel;
 import timeanalysis.App.Interfaces.IAlmacenemiento;
 import timeanalysis.App.Interfaces.ITostadas;
@@ -16,16 +15,16 @@ import android.widget.Toast;
 
 public class Interno extends Excel implements IAlmacenemiento,ITostadas {
 	
-	private String Carpeta = getString(R.string.NombreCarpeta).toString();
+	private String base = "/data/data/" + MainActivity.contexto.getPackageName() + "/";
 	private String NombreArchivo = "";
 	private String Extension = ".xls";
 	private File Dir;
 	private File Archivo;
 	
 	public Interno() {
-		Dir = new File(MainActivity.contexto.getFilesDir(), Carpeta);
+		Dir = new File(base, Carpeta);
 		if(Dir.mkdir()) {
-			MostrarTostada(getString(R.string.CreoDirectorioInterno).toString());
+			MostrarTostada(MainActivity.BuscarTexto(4));
 		}
 		wb = null;
 		wbSettings = new WorkbookSettings();
@@ -33,7 +32,7 @@ public class Interno extends Excel implements IAlmacenemiento,ITostadas {
 	
 	@Override
 	public void EscribirDatosRecolectados() {
-		CrearHoja(wb, getString(R.string.NombreHoja).toString(), 0);
+		CrearHoja(wb, MainActivity.BuscarTexto(5), 0);
 //		Aqui me valgo de la config para poner esos datos correctamente.
 //		for(int i = 0; i < 2; i++) {
 //			for(int j = 0; j < 2; j++) {

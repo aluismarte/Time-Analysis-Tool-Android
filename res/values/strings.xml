@@ -44,4 +44,5 @@
     <string name="CreoDirectorioInterno">Se creo un directorio interno.</string>
     <string name="CreoDirectorioSD">Se creo un directorio en la SD.</string>
     <string name="SDNoDisponible">La memoria SD no esta disponible o no es posible escribir en ella.</string>
+    <string name="ErrorMemoriaInterna">Ocurrio un error al crear una carpeta en la memoria interna.</string>
 </resources>

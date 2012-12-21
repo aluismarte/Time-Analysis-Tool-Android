@@ -41,11 +41,14 @@ public class MainActivity extends TabActivity implements ITostadas {
 	private Button BotonSalvar;
 	private EditText NombreArchivoSalvar;
 	
+	static String Carpeta, CrearDirSD, CrearDirInterno, NombreHoja, NoDisSD;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		
+		InstanciarStrings();
 		contexto = this;
 		
 		//Seteo por defecto el interno.
@@ -55,6 +58,14 @@ public class MainActivity extends TabActivity implements ITostadas {
 		//Es posible hacer una implementacion moderna.
 		//Solo hay que usar el chequeo de versiones
 		PrepararTabs();
+	}
+	
+	private void InstanciarStrings() {
+		Carpeta = getString(R.string.NombreCarpeta).toString();
+		CrearDirSD = getString(R.string.CreoDirectorioSD).toString();
+		CrearDirInterno = getString(R.string.CreoDirectorioInterno).toString();
+		NombreHoja = getString(R.string.NombreHoja).toString();
+		NoDisSD = getString(R.string.SDNoDisponible).toString();
 	}
 	
 	@Override
@@ -206,6 +217,23 @@ public class MainActivity extends TabActivity implements ITostadas {
 			e.printStackTrace();
 		}
 		finish();
+	}
+	
+	public static String BuscarTexto(int a) {
+		switch (a) {
+		case 1:
+			return Carpeta;
+		case 2:
+			return CrearDirSD;
+		case 3:
+			return NoDisSD;
+		case 4:
+			return CrearDirInterno;
+		case 5:
+			return NombreHoja;
+		default:
+			return "";
+		}
 	}
 	
 	@Override
