@@ -21,7 +21,7 @@
     <string name="SalvarTitulo">Salvar</string>
     <string name="Reporte">Tab de reportes</string>
     <string name="abrir">Abrir</string>
-    <string name="MenuSalvadoLetrero">Especifique donde desea guardar</string>
+    <string name="MenuSalvadoLetrero">Especifique el nombre</string>
     <string name="NombreArchivo">Digite el nombre del archivo</string>
     <string name="elementos">Elementos</string>
     <string name="ErrorEscritura">Error de escritura.</string>
@@ -45,4 +45,9 @@
     <string name="CreoDirectorioSD">Se creo un directorio en la SD.</string>
     <string name="SDNoDisponible">La memoria SD no esta disponible o no es posible escribir en ella.</string>
     <string name="ErrorMemoriaInterna">Ocurrio un error al crear una carpeta en la memoria interna.</string>
+    <string-array name="TipoArchivos">
+        <item >Excel .XLS</item>
+        <item >PDF .PDF</item>
+    </string-array>
+    <string name="ExtensionSalvar">Extension de archivo: </string>
 </resources>
