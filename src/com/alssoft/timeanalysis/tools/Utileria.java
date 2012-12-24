@@ -21,6 +21,10 @@ public class Utileria {
 		
 	}
 	
+	public void CrearDirectorio(String nombreCarpeta) {
+		
+	}
+	
 	public void CrearDireccionArchivo(String archivo) {
 		//Creo el path correspondiente del archivo.
 		//Esto puede estar en 2 lugares [Interno y SD]

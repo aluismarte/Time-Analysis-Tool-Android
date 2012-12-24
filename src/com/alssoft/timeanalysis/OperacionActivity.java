@@ -169,6 +169,14 @@ public class OperacionActivity extends Activity implements ITostadas {
 		dialog.show();
 	}
 	
+	public static List<OperacionDescripcionModelo> getSeleccion() {
+		List<OperacionDescripcionModelo> lol = new ArrayList<OperacionDescripcionModelo>();
+		OperacionDescripcionModelo odm = new OperacionDescripcionModelo();
+		odm.setIdOperacion((operaciones.get(IDOperacionElemento)).getId());
+		lol = ManejadorOperadorDescripcion.getInstancia().Buscar(odm);
+		return lol;
+	}
+	
 	@Override
     protected void onSaveInstanceState(Bundle save) {
 		super.onSaveInstanceState(save);

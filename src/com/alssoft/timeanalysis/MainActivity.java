@@ -32,6 +32,9 @@ public class MainActivity extends TabActivity implements ITostadas {
 	private static IAlmacenemiento DispositivoSalvado;
 	private static Resources ressources;
 	private static TabHost tabHost;
+	private static int repeticiones;
+	
+	//Menu Objetos
 	private static Button BotonSalvar;
 	private static EditText NombreArchivoSalvar;
 	private static Spinner spinner;
@@ -171,6 +174,10 @@ public class MainActivity extends TabActivity implements ITostadas {
 	
 	public static void setTabCaptura() {
 		setTab(0);
+	}
+	
+	public static int getRepeticiones() {
+		return repeticiones;
 	}
 	
 	public static void setDispositivoSalvado(IAlmacenemiento alma) {

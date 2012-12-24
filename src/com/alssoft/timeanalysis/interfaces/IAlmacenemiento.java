@@ -18,6 +18,5 @@ public interface IAlmacenemiento {
 	public abstract File getArchivo();
 	public abstract void PreparoArchivo();
 	public abstract void CerrarArchivo() throws WriteException, IOException;
-	public abstract void EscribirDatosRecolectados();
-	public abstract void EscribirDatosAnalisis();
+	public abstract void TipoArchivo(String extension);
 }

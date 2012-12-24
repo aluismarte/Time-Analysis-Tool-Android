@@ -3,16 +3,15 @@ package com.alssoft.timeanalysis.tools;
 import java.io.File;
 import java.io.IOException;
 
+import jxl.WorkbookSettings;
+import jxl.write.WriteException;
+import android.net.Uri;
+import android.widget.Toast;
+
 import com.alssoft.timeanalysis.MainActivity;
 import com.alssoft.timeanalysis.clasesabstractas.Excel;
 import com.alssoft.timeanalysis.interfaces.IAlmacenemiento;
 import com.alssoft.timeanalysis.interfaces.ITostadas;
-
-import jxl.WorkbookSettings;
-import jxl.write.WriteException;
-
-import android.net.Uri;
-import android.widget.Toast;
 
 public class Interno extends Excel implements IAlmacenemiento,ITostadas {
 	
@@ -32,22 +31,6 @@ public class Interno extends Excel implements IAlmacenemiento,ITostadas {
 	}
 	
 	@Override
-	public void EscribirDatosRecolectados() {
-		CrearHoja(wb, MainActivity.BuscarTexto(5), 0);
-//		Aqui me valgo de la config para poner esos datos correctamente.
-//		for(int i = 0; i < 2; i++) {
-//			for(int j = 0; j < 2; j++) {
-//				
-//			}
-//		}
-	}
-	
-	@Override
-	public void EscribirDatosAnalisis() {
-		//Aqui supone que pongo los calculos estadisticos.
-	}
-	
-	@Override
 	public void PreparoArchivo() {
 		if(!"".equals(NombreArchivo)) {
 			String ArchivoCompleto = NombreArchivo + Extension;
@@ -61,17 +44,19 @@ public class Interno extends Excel implements IAlmacenemiento,ITostadas {
 			PreparoArchivo();
 			try {
 				EscribirArchivo(Archivo);
-			} catch (IOException e) {
+				//EscribirDatosRecolectados();
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}else {
 			try {
 				EscribirArchivo(Archivo);
-			} catch (IOException e) {
+				//EscribirDatosRecolectados();
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
-		EscribirDatosRecolectados();
+		
 	}
 
 	@Override
@@ -114,6 +99,11 @@ public class Interno extends Excel implements IAlmacenemiento,ITostadas {
 	@Override
 	public void CerrarArchivo() throws WriteException, IOException {
 		wb.close();
+	}
+	
+	@Override
+	public void TipoArchivo(String extension) {
+		
 	}
 	
 	@Override

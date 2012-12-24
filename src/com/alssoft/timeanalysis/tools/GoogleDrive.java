@@ -47,16 +47,6 @@ public class GoogleDrive extends Activity implements IEspecial,IAlmacenemiento,I
 	}
 	
 	@Override
-	public void EscribirDatosRecolectados() {
-		
-	}
-
-	@Override
-	public void EscribirDatosAnalisis() {
-		
-	}
-	
-	@Override
 	public void PreparoArchivo() {
 		//No implemento aqui.
 	}
@@ -149,6 +139,11 @@ public class GoogleDrive extends Activity implements IEspecial,IAlmacenemiento,I
 	@Override
 	public void CerrarArchivo() throws WriteException, IOException {
 		//Aqui cierro el archivo.
+	}
+	
+	@Override
+	public void TipoArchivo(String extension) {
+		
 	}
 	
 	public void MostrarTostada(final String tostada) {

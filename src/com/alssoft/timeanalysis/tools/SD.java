@@ -17,7 +17,7 @@ import android.widget.Toast;
 public class SD extends Excel implements IAlmacenemiento,ITostadas {
 	
 	private String NombreArchivo = "";
-	private String Extension = ".xls";
+	private String Extension = "";
 	private File Dir;
 	private File Archivo;
 	
@@ -60,28 +60,20 @@ public class SD extends Excel implements IAlmacenemiento,ITostadas {
 	}
 	
 	@Override
-	public void EscribirDatosRecolectados() {
-		
-	}
-
-	@Override
-	public void EscribirDatosAnalisis() {
-		
-	}
-	
-	@Override
 	public void Salvar() {
 		if(Archivo == null) {
 			PreparoArchivo();
 			try {
 				EscribirArchivo(Archivo);
-			} catch (IOException e) {
+				//EscribirDatosRecolectados();
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}else {
 			try {
 				EscribirArchivo(Archivo);
-			} catch (IOException e) {
+				//EscribirDatosRecolectados();
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
@@ -127,6 +119,11 @@ public class SD extends Excel implements IAlmacenemiento,ITostadas {
 	@Override
 	public void CerrarArchivo() throws WriteException, IOException {
 		wb.close();
+	}
+	
+	@Override
+	public void TipoArchivo(String extension) {
+		//Esta funcion debe permitir poner la extension.
 	}
 	
 	@Override
