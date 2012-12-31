@@ -52,7 +52,7 @@ public abstract class Excel {
 		//Inserto los datos.
 		for(int i = 0; i < x; i++) {
 			for(int j = 0; j < y; j++,dat++) {
-				EscribirCeldaLabel(i+movX, j+movY,Datos.get(dat),wb.getSheet("Datos"));
+				EscribirCeldaLabel(i+movX, j+movY,Datos.get(dat),wb.getSheet(MainActivity.BuscarTexto(5)));
 			}
 		}
 	}
