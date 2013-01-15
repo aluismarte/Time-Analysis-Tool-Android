@@ -1,6 +1,8 @@
 package com.alssoft.timeanalysis.tools;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 
 import android.net.Uri;
 import android.os.Environment;
@@ -14,9 +16,10 @@ import com.alssoft.timeanalysis.interfaces.ITostadas;
 public class SD extends Excel implements IAlmacenemiento,ITostadas {
 	
 	private String NombreArchivo = "";
-	private String Extension = "";
+	private String Extension = ".xlsx";
 	private File Dir;
 	private File Archivo;
+	private FileOutputStream ArchivoOut;
 	
 	public SD() {
 		if(isExternalStorageReadable() && isExternalStorageWritable()) {
@@ -27,13 +30,17 @@ public class SD extends Excel implements IAlmacenemiento,ITostadas {
 		}else {
 			MostrarTostada(MainActivity.BuscarTexto(3));
 		}
-		
 	}
 	
 	public void PreparoArchivo() {
 		if(!"".equals(NombreArchivo)) {
 			String ArchivoCompleto = NombreArchivo + Extension;
 			Archivo = new File(Dir, ArchivoCompleto);
+			try {
+				ArchivoOut = new FileOutputStream(Archivo);
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 	
@@ -59,14 +66,14 @@ public class SD extends Excel implements IAlmacenemiento,ITostadas {
 		if(Archivo == null) {
 			PreparoArchivo();
 			try {
-				EscribirArchivo(Archivo);
+				EscribirArchivoExcel2007(ArchivoOut);
 				//EscribirDatosRecolectados();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}else {
 			try {
-				EscribirArchivo(Archivo);
+				EscribirArchivoExcel2007(ArchivoOut);
 				//EscribirDatosRecolectados();
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -76,19 +83,19 @@ public class SD extends Excel implements IAlmacenemiento,ITostadas {
 
 	@Override
 	public void Actualizar() {
-		//Falta por implementar.
-		//En la siguiente version.
+		// Falta por implementar.
+		// En la siguiente version.
 	}
 
 	@Override
 	public void Borrar() {
-		//Falta por implementar.
-		//En la siguiente version.
+		// Falta por implementar.
+		// En la siguiente version.
 	}
 	
 	@Override
 	public void DireccionArchivo(Uri direccion) {
-		//Aqui no lo implemento.
+		// Aqui no lo implemento.
 	}
 	
 	@Override
@@ -112,12 +119,8 @@ public class SD extends Excel implements IAlmacenemiento,ITostadas {
 	}
 	
 	@Override
-	public void CerrarArchivo() {
-	}
-	
-	@Override
 	public void TipoArchivo(String extension) {
-		//Esta funcion debe permitir poner la extension.
+		Extension = extension;
 	}
 	
 	@Override

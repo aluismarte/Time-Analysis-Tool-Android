@@ -14,6 +14,5 @@ public interface IAlmacenemiento {
 	public abstract void setNombreArchivo(String name);
 	public abstract File getArchivo();
 	public abstract void PreparoArchivo();
-	public abstract void CerrarArchivo();
 	public abstract void TipoArchivo(String extension);
 }

@@ -136,11 +136,6 @@ public class GoogleDrive extends Activity implements IEspecial,IAlmacenemiento,I
 	}
 	
 	@Override
-	public void CerrarArchivo() {
-		//Aqui cierro el archivo.
-	}
-	
-	@Override
 	public void TipoArchivo(String extension) {
 		
 	}
