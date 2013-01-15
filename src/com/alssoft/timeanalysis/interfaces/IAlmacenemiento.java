@@ -1,9 +1,6 @@
 package com.alssoft.timeanalysis.interfaces;
 
 import java.io.File;
-import java.io.IOException;
-
-import jxl.write.WriteException;
 
 import android.net.Uri;
 
@@ -17,6 +14,6 @@ public interface IAlmacenemiento {
 	public abstract void setNombreArchivo(String name);
 	public abstract File getArchivo();
 	public abstract void PreparoArchivo();
-	public abstract void CerrarArchivo() throws WriteException, IOException;
+	public abstract void CerrarArchivo();
 	public abstract void TipoArchivo(String extension);
 }

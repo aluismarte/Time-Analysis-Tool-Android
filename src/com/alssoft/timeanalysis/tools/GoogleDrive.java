@@ -2,7 +2,6 @@ package com.alssoft.timeanalysis.tools;
 
 import java.io.IOException;
 
-import jxl.write.WriteException;
 import android.accounts.AccountManager;
 import android.app.Activity;
 import android.content.Intent;
@@ -137,7 +136,7 @@ public class GoogleDrive extends Activity implements IEspecial,IAlmacenemiento,I
 	}
 	
 	@Override
-	public void CerrarArchivo() throws WriteException, IOException {
+	public void CerrarArchivo() {
 		//Aqui cierro el archivo.
 	}
 	

@@ -1,18 +1,15 @@
 package com.alssoft.timeanalysis.tools;
 
 import java.io.File;
-import java.io.IOException;
+
+import android.net.Uri;
+import android.os.Environment;
+import android.widget.Toast;
 
 import com.alssoft.timeanalysis.MainActivity;
 import com.alssoft.timeanalysis.clasesabstractas.Excel;
 import com.alssoft.timeanalysis.interfaces.IAlmacenemiento;
 import com.alssoft.timeanalysis.interfaces.ITostadas;
-
-import jxl.WorkbookSettings;
-import jxl.write.WriteException;
-import android.net.Uri;
-import android.os.Environment;
-import android.widget.Toast;
 
 public class SD extends Excel implements IAlmacenemiento,ITostadas {
 	
@@ -27,8 +24,6 @@ public class SD extends Excel implements IAlmacenemiento,ITostadas {
 			if(Dir.mkdir()) {
 				MostrarTostada(MainActivity.BuscarTexto(2));
 			}
-			wb = null;
-			wbSettings = new WorkbookSettings();
 		}else {
 			MostrarTostada(MainActivity.BuscarTexto(3));
 		}
@@ -117,8 +112,7 @@ public class SD extends Excel implements IAlmacenemiento,ITostadas {
 	}
 	
 	@Override
-	public void CerrarArchivo() throws WriteException, IOException {
-		wb.close();
+	public void CerrarArchivo() {
 	}
 	
 	@Override

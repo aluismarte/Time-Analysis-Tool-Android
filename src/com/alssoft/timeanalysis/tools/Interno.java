@@ -1,10 +1,7 @@
 package com.alssoft.timeanalysis.tools;
 
 import java.io.File;
-import java.io.IOException;
 
-import jxl.WorkbookSettings;
-import jxl.write.WriteException;
 import android.net.Uri;
 import android.widget.Toast;
 
@@ -26,8 +23,6 @@ public class Interno extends Excel implements IAlmacenemiento,ITostadas {
 		if(Dir.mkdir()) {
 			MostrarTostada(MainActivity.BuscarTexto(4));
 		}
-		wb = null;
-		wbSettings = new WorkbookSettings();
 	}
 	
 	@Override
@@ -97,8 +92,7 @@ public class Interno extends Excel implements IAlmacenemiento,ITostadas {
 	}
 	
 	@Override
-	public void CerrarArchivo() throws WriteException, IOException {
-		wb.close();
+	public void CerrarArchivo() {
 	}
 	
 	@Override
