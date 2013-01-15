@@ -20,14 +20,15 @@ import com.alssoft.timeanalysis.OperacionActivity;
 public abstract class Excel {
 	
 	protected String Carpeta = MainActivity.BuscarTexto(1);
-	public Workbook wb;
-	public FileOutputStream fileOut;
-	public CreationHelper createHelper;
+	private Workbook wb;
+	private FileOutputStream fileOut;
+	private CreationHelper createHelper;
+	private CellStyle cellStyle;
 	private List<String> Datos;
-	private String HojaDatos = "Datos";
-	private String HojaCalculos = "Calculos";
-	public Sheet HojaDat;
-	public Sheet HojaCal;
+	private String NombreHojaDatos = "Datos";
+	private String NombreHojaCalculos = "Calculos";
+	private Sheet HojaDat;
+	//private Sheet HojaCal; No la uso todavia y evito wl warning
 	
 	public void EscribirArchivoExcel2007(FileOutputStream Archivo) {
 		wb = new XSSFWorkbook();
@@ -54,8 +55,21 @@ public abstract class Excel {
 	}
 	
 	private void CrearHojas() {
-		CrearHojaExcel(HojaDatos);
-		CrearHojaExcel(HojaCalculos);
+		CrearHojaExcel(NombreHojaDatos);
+		CrearHojaExcel(NombreHojaCalculos);
+	}
+	
+	private void SetEstilo(int valor) {
+		cellStyle = wb.createCellStyle();
+		if(valor == 0) {
+			cellStyle.setDataFormat(createHelper.createDataFormat().getFormat("m/d/yy h:mm"));
+		}else if(valor == 1) {
+			cellStyle.setAlignment(CellStyle.ALIGN_CENTER);
+		}else if(valor == 2) {
+			cellStyle.setAlignment(CellStyle.ALIGN_LEFT);
+		}else if(valor == 3) {
+			cellStyle.setAlignment(CellStyle.ALIGN_RIGHT);
+		}
 	}
 	
 	private void EscribirDatosRecolectadosExcel() {
@@ -68,13 +82,13 @@ public abstract class Excel {
 		// Preparo las cabezeras.
 		for(int k = 1; k <= x; k++) {
 			CrearCabeza(k, HojaDat);
-			EscribirCelda(1, k, "Ope#"+ k, HojaDat);
+			EscribirCelda(1, k, "Ope#"+ k, HojaDat, 1);
 		}
 		
 		// Inserto los datos.
 		for(int i = 1; i <= y; i++) {
 			for(int j = 1; j <= x; j++,dat++) {
-				EscribirCelda(i, j,Datos.get(dat), HojaDat);
+				EscribirCelda(i, j,Datos.get(dat), HojaDat, 1);
 			}
 		}
 	}
@@ -94,28 +108,30 @@ public abstract class Excel {
 	}
 	
 	// Uso polimorfismo y evito nombres diferentes con los diversos tipos de datos.
-	protected void EscribirCelda(int columnPos, int rowPos, String contenido, Sheet hojas) {
+	protected void EscribirCelda(int columnPos, int rowPos, String contenido, Sheet hojas, int estilo) {
+		SetEstilo(estilo);
 		Row row = hojas.getRow(rowPos);
 		Cell cell = row.createCell(columnPos);
 		cell.setCellValue(contenido);
 	}
 	
-	protected void EscribirCelda(int columnPos, int rowPos, double contenido, Sheet hojas) {
+	protected void EscribirCelda(int columnPos, int rowPos, double contenido, Sheet hojas, int estilo) {
+		SetEstilo(estilo);
 		Row row = hojas.getRow(rowPos);
 		Cell cell = row.createCell(columnPos);
 		cell.setCellValue(contenido);
 	}
 	
-	protected void EscribirCelda(int columnPos, int rowPos, Date contenido, Sheet hojas) {
-		CellStyle cellStyle = wb.createCellStyle();
-		cellStyle.setDataFormat(createHelper.createDataFormat().getFormat("m/d/yy h:mm"));
+	protected void EscribirCelda(int columnPos, int rowPos, Date contenido, Sheet hojas, int estilo) {
+		SetEstilo(estilo);
 		Row row = hojas.getRow(rowPos);
 		Cell cell = row.createCell(columnPos);
 		cell.setCellValue(contenido);
 		cell.setCellStyle(cellStyle);
 	}
 	
-	protected void EscribirCelda(int columnPos, int rowPos, boolean contenido, Sheet hojas) {
+	protected void EscribirCelda(int columnPos, int rowPos, boolean contenido, Sheet hojas, int estilo) {
+		SetEstilo(estilo);
 		Row row = hojas.getRow(rowPos);
 		Cell cell = row.createCell(columnPos);
 		cell.setCellValue(contenido);
